@@ -1,7 +1,7 @@
 # Image Search Engine
 
 Visual product search using CLIP embeddings and FAISS. Upload an image, get visually similar products ranked by cosine similarity.
-
+![sample](https://github.com/amirvalipour-se/image-search-engine/blob/main/duck-screen.png)
 ## Architecture
 
 ```
