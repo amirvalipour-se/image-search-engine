@@ -12,7 +12,7 @@ _lock = threading.Lock()
 def default_index_path():
     candidates = [
         Path("/app/index/faiss.index"),
-        Path(__file__).resolve().parents[2] / "index" / "faiss.index",
+        Path(__file__).resolve().parents[1] / "index" / "faiss.index",
     ]
     for candidate in candidates:
         if candidate.exists():
