@@ -19,3 +19,5 @@ loadtest/results/
 /api
 /downloader
 /indexer
+
+*.pdf
