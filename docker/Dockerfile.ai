@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN mkdir -p /app/index /app/images
+
+COPY ai/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir faiss-cpu
+
+COPY ai/ .
+
+EXPOSE 8000
+
+CMD ["sh", "-c", "export KMP_DUPLICATE_LIB_OK=TRUE && export OMP_NUM_THREADS=1 && uvicorn app:app --host 0.0.0.0 --port 8000"]

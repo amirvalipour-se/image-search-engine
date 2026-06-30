@@ -1,0 +1,21 @@
+# Generated
+index/faiss.index
+index/image_ids.json
+index/metadata.json
+images/
+
+# Python
+ai/__pycache__/
+ai/.venv/
+
+# Load test results
+loadtest/results/
+
+# IDE
+.idea
+.DS_Store
+
+# Build artifacts
+/api
+/downloader
+/indexer

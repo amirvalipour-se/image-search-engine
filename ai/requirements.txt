@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+torch
+torchvision
+open_clip_torch
+pillow
+numpy
+pandas
+requests
+faiss-cpu
+python-multipart

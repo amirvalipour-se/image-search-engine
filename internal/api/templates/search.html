@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Search</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Arial, sans-serif;
+      background: #f6f7f9;
+      color: #1f2933;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+    }
+
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: end;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid #d8dee6;
+      border-radius: 8px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input {
+      box-sizing: border-box;
+      min-height: 38px;
+      padding: 8px;
+      border: 1px solid #b8c2cc;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    input[type="number"] {
+      width: 96px;
+    }
+
+    button {
+      min-height: 38px;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 6px;
+      background: #1769aa;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .error {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border: 1px solid #f4b4b4;
+      border-radius: 6px;
+      background: #fff1f1;
+      color: #9f1d1d;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    article {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #d8dee6;
+      border-radius: 8px;
+    }
+
+    article img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #e9edf2;
+      display: block;
+    }
+
+    article div {
+      padding: 12px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    p {
+      margin: 4px 0;
+      color: #52616f;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Image Search</h1>
+
+    <form method="post" action="/" enctype="multipart/form-data">
+      <label>
+        Image
+        <input type="file" name="file" accept="image/*" required>
+      </label>
+
+      <label>
+        Results
+        <input type="number" name="k" value="{{.K}}" min="1" max="1000">
+      </label>
+
+      <button type="submit">Search</button>
+    </form>
+
+    {{if .Error}}
+      <div class="error">{{.Error}}</div>
+    {{end}}
+
+    {{if .Results}}
+      <section class="results">
+        {{range .Results}}
+          <article>
+            {{if .Image}}<img src="{{.Image}}" alt="{{.ProductName}}">{{end}}
+            <div>
+              <h2>{{.ProductName}}</h2>
+              <p>{{.Category}}</p>
+              <p>${{printf "%.2f" .Price}}</p>
+              <p>Score: {{printf "%.3f" .Score}}</p>
+            </div>
+          </article>
+        {{end}}
+      </section>
+    {{end}}
+  </main>
+</body>
+</html>
